@@ -1,0 +1,6 @@
+<vxml version="2.0" lang="en">
+   <form id="myProj">
+      <prompt>I am here</prompt>
+      <prompt>I am not here</prompt>
+   </form>
+</vxml>
