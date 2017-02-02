@@ -1,7 +1,7 @@
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output indent="yes"/>
   <xsl:strip-space elements="*"/>
-
+  <xsl:import xref="hangup_branch.xsl">
   <xsl:template match="node()|@*">
     <xsl:copy>
       <xsl:apply-templates select="node()|@*"/>
@@ -20,8 +20,11 @@
 				<locationY>57</locationY>
 				<moduleId><xsl:value-of select="generate-id(.)"/></moduleId>
 			</incomingCall>	
-	    </modules>	
+	    </modules>
         <xsl:apply-templates select="*/*"/>
+		
+		<xsl:value-of select="f9:hangup_branch()"/>
+
 	</ivrScript>
   </xsl:template>
 </xsl:stylesheet>
