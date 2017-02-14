@@ -4,6 +4,7 @@
 	<xsl:strip-space elements="*" />
 	
 	<xsl:include href="hangup_branch.xsl" />
+	<xsl:include href="module_play.xsl" />
 	
 	<xsl:template match="node()|@*">
 		<xsl:copy>
@@ -26,10 +27,19 @@
 					</moduleId>
 				</incomingCall>
 			</modules>
-			<xsl:apply-templates select="*/*" />
+			<xsl:apply-templates select="form" />
 
 			<xsl:call-template name="hangup_branch" />
 
 		</ivrScript>
+	</xsl:template>
+	
+	<xsl:template match="form">
+		<xsl:variable name="form_id">
+			<xsl:value-of select="@id"></xsl:value-of>
+		</xsl:variable>
+		<xsl:call-template name="module_play">
+			<xsl:with-param name="module_name" select="$form_id"/>
+		</xsl:call-template>
 	</xsl:template>
 </xsl:stylesheet>
